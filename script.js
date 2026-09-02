@@ -1,4 +1,4 @@
-// Fingo Pay - Script.js
+// Fingo Pay - script.js
 console.log("Fingo Pay is ready!");
 
 // 1. Get the quick amount buttons and the amount input
