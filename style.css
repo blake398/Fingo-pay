@@ -5,10 +5,11 @@
   font-family: Arial, sans-serif;
 }
 
-/* BACKGROUND */
+/* BODY */
 body {
   background: linear-gradient(135deg, #001b0d, #022e1a);
   color: white;
+  line-height: 1.6;
 }
 
 /* HEADER */
@@ -40,12 +41,12 @@ nav a:hover {
   color: #22c55e;
 }
 
-/* HERO */
+/* HERO (STEP 2A FIX APPLIED HERE ✔) */
 .hero {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 6% 120px;
+  padding: 120px 6% 120px;
   gap: 60px;
 }
 
@@ -184,6 +185,7 @@ input:focus {
   background: #f1faf3;
   padding: 30px;
   border-radius: 15px;
+  color: #111;
 }
 
 .why h2 {
@@ -250,4 +252,4 @@ footer p {
   nav {
     display: none;
   }
-  }
+}
