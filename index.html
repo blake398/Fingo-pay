@@ -1,1 +1,546 @@
-fingo-pay
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fingo Pay</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7faf8;
+      color: #111;
+    }
+
+    header {
+      background: #001b0d;
+      color: white;
+      padding: 20px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #35c759;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+    }
+
+    .hero {
+      background: #001b0d;
+      color: white;
+      padding: 70px 6% 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+    }
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #35c759;
+    }
+
+    .hero p {
+      font-size: 19px;
+      line-height: 1.6;
+      color: #d9e5dd;
+      margin-bottom: 30px;
+    }
+
+    .pay-button {
+      display: inline-block;
+      background: #35c759;
+      color: white;
+      border: none;
+      padding: 17px 35px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .phone {
+      width: 280px;
+      height: 520px;
+      border: 8px solid #333;
+      border-radius: 40px;
+      background: #075c2c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .phone h2 {
+      font-size: 25px;
+    }
+
+    .payment-section {
+      max-width: 1100px;
+      margin: -45px auto 60px;
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      position: relative;
+    }
+
+    .payment-section h2 {
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 15px 0 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .amount-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .amount-buttons button {
+      padding: 11px 18px;
+      border: 1px solid #ddd;
+      background: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .amount-buttons button:hover {
+      border-color: #35c759;
+      color: #168a36;
+    }
+
+    .mpesa-button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 17px;
+      border: none;
+      border-radius: 9px;
+      background: #35c759;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .security {
+      text-align: center;
+      margin-top: 15px;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .why {
+      background: #f1faf3;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .why h2 {
+      color: #219b40;
+    }
+
+    .why-item {
+      margin: 25px 0;
+    }
+
+    .why-item h3 {
+      margin-bottom: 7px;
+    }
+
+    .how {
+      padding: 30px 6% 70px;
+      text-align: center;
+    }
+
+    .how h2 {
+      font-size: 30px;
+      margin-bottom: 40px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .step {
+      padding: 20px;
+    }
+
+    .step-number {
+      width: 55px;
+      height: 55px;
+      background: #e7f8eb;
+      color: #219b40;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: #666;
+      line-height: 1.5;
+    }
+
+    footer {
+      background: #001b0d;
+      color: white;
+      padding: 45px 6%;
+      text-align: center;
+    }
+
+    footer .logo {
+      margin-bottom: 15px;
+    }
+
+    footer p {
+      color: #b8c9be;
+    }
+
+    @media (max-width: 800px) {
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .phone {
+        width: 230px;
+        height: 430px;
+      }
+
+      .payment-section {
+        grid-template-columns: 1fr;
+        margin: -30px 15px 50px;
+        padding: 25px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Fingo <span>Pay</span></div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#payment">Make Payment</a>
+    <a href="#how">How It Works</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <h1>
+      Send Money.<br>
+      Pay Easy.<br>
+      <span>Live Better.</span>
+    </h1>
+
+    <p>
+      Fingo Pay makes payments simple, fast and secure.
+      Pay easily using M-Pesa.
+    </p>
+
+    <a href="#payment" class="pay-button">
+      MAKE A PAYMENT
+    </a>
+
+  </div>
+
+  <div class="phone">
+    <div>
+      <h2>Fingo Pay</h2>
+      <br>
+      <div style="font-size:60px;">✓</div>
+      <br>
+      <h2>Payment<br>Successful!</h2>
+    </div>
+  </div>
+
+</section>
+
+<section class="payment-section" id="payment">
+
+  <div>
+
+    <h2>💳 Make a Payment</h2>
+
+    <form id="paymentForm">
+
+      <label for="name">Your Name</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your full name"
+        required
+      >
+
+      <label for="phone">M-Pesa Number</label>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="07XXXXXXXX"
+        required
+      >
+
+      <label for="amount">Amount (KSh)</label>
+      <input
+        type="number"
+        id="amount"
+        placeholder="Enter amount to pay"
+        min="1"
+        required
+      >
+
+      <div class="amount-buttons">
+
+        <button type="button" onclick="setAmount(100)">
+          100
+        </button>
+
+        <button type="button" onclick="setAmount(200)">
+          200
+        </button>
+
+        <button type="button" onclick="setAmount(500)">
+          500
+        </button>
+
+        <button type="button" onclick="setAmount(1000)">
+          1,000
+        </button>
+
+        <button type="button" onclick="setAmount(2000)">
+          2,000
+        </button>
+
+        <button type="button" onclick="setAmount('')">
+          Other
+        </button>
+
+      </div>
+
+      <button type="submit" class="mpesa-button">
+        🟢 PAY WITH M-PESA
+      </button>
+
+      <div class="security">
+        🔒 Your payment is secure and encrypted
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="why">
+
+    <h2>Why use Fingo Pay?</h2>
+
+    <div class="why-item">
+      <h3>⚡ Instant Payments</h3>
+      <p>Pay in seconds using M-Pesa.</p>
+    </div>
+
+    <div class="why-item">
+      <h3>🛡️ Secure & Safe</h3>
+      <p>Your transactions are protected.</p>
+    </div>
+
+    <div class="why-item">
+      <h3>👥 Easy to Use</h3>
+      <p>Simple steps for everyone.</p>
+    </div>
+
+    <div class="why-item">
+      <h3>📄 Payment Records</h3>
+      <p>Your payment records can be tracked.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="how" id="how">
+
+  <h2>How It Works</h2>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Enter Details</h3>
+      <p>
+        Enter your name, M-Pesa number and amount.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Confirm Payment</h3>
+      <p>
+        Click Pay with M-Pesa and confirm on your phone.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Secure Processing</h3>
+      <p>
+        Your payment is securely processed.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Payment Successful</h3>
+      <p>
+        Receive confirmation of your payment.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<footer id="contact">
+
+  <div class="logo">
+    Fingo <span>Pay</span>
+  </div>
+
+  <p>
+    Simple, fast and secure payments using M-Pesa.
+  </p>
+
+  <br>
+
+  <p>
+    © 2026 Fingo Pay. All Rights Reserved.
+  </p>
+
+</footer>
+
+<script>
+
+  function setAmount(value) {
+    document.getElementById("amount").value = value;
+    document.getElementById("amount").focus();
+  }
+
+  document.getElementById("paymentForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const amount = Number(document.getElementById("amount").value);
+
+    if (!name) {
+      alert("Please enter your name.");
+      return;
+    }
+
+    if (!/^07\d{8}$/.test(phone)) {
+      alert("Please enter a valid Safaricom number, for example 0712345678.");
+      return;
+    }
+
+    if (!amount || amount < 1) {
+      alert("Please enter a valid amount.");
+      return;
+    }
+
+    alert(
+      "Your payment request will be sent to " +
+      phone +
+      " for KSh " +
+      amount +
+      "."
+    );
+
+  });
+
+</script>
+
+</body>
+  </html>
