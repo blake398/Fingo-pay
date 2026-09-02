@@ -1,8 +1,11 @@
-// 1. Select the quick amount buttons and the amount input
+// Fingo Pay - Script.js
+console.log("Fingo Pay is ready!");
+
+// 1. Get the quick amount buttons and the amount input
 const quickButtons = document.querySelectorAll('.quick-amounts button');
 const amountInput = document.querySelector('input[type="number"]');
 
-// 2. Add a click event to each quick amount button
+// 2. Make the quick amounts work
 quickButtons.forEach(button => {
     button.addEventListener('click', function() {
         // If "Other" is clicked, clear the box and let the user type
@@ -37,7 +40,7 @@ paymentForm.addEventListener('submit', function(event) {
         return;
     }
 
-    // Fake confirmation (For now, since the real M-Pesa API comes in Stage 3)
+    // Fake confirmation for now
     alert(`Payment of KSh ${amount} initiated for ${name}.\nPlease check your phone for the M-Pesa STK Push!`);
     
     // Clear the form
