@@ -1,53 +1,37 @@
-// SELECT ELEMENTS
-const amountInput = document.getElementById("amount");
-const buttons = document.querySelectorAll(".amount-buttons button");
-const form = document.getElementById("paymentForm");
-const payBtn = document.querySelector(".mpesa-button");
+// Add event listeners to the quick amount buttons
+const amountButtons = document.querySelectorAll('.quick-amounts button');
+const amountInput = document.querySelector('input[type="number"]');
 
-// QUICK AMOUNT BUTTONS
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    amountInput.value = button.dataset.amount || "";
-    amountInput.focus();
-  });
+amountButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        // If "Other" is clicked, just focus the input
+        if (this.innerText === 'Other') {
+            amountInput.value = '';
+            amountInput.focus();
+        } else {
+            // Remove commas for the input value
+            amountInput.value = this.innerText.replace(',', '');
+        }
+    });
 });
 
-// FORM SUBMIT
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+// Handle the form submission (for demo purposes)
+const form = document.querySelector('.form-box form');
+form.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents page reload
+    
+    const name = document.querySelector('input[placeholder="Enter your full name"]').value;
+    const phone = document.querySelector('input[placeholder="07XXXXXXXX"]').value;
+    const amount = amountInput.value;
 
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const amount = Number(amountInput.value);
+    if(!name || !phone || !amount) {
+        alert('Please fill in all fields.');
+        return;
+    }
 
-  // VALIDATION
-  if (!name) {
-    alert("Please enter your name.");
-    return;
-  }
-
-  if (!/^07\d{8}$/.test(phone)) {
-    alert("Enter a valid Safaricom number (e.g. 0712345678)");
-    return;
-  }
-
-  if (!amount || amount < 1) {
-    alert("Enter a valid amount.");
-    return;
-  }
-
-  // SIMULATE PAYMENT
-  payBtn.innerText = "Processing...";
-  payBtn.disabled = true;
-
-  setTimeout(() => {
-    payBtn.innerText = "Payment Sent ✔";
-    alert(`STK Push sent to ${phone} for KSh ${amount}`);
-
-    // RESET
+    // Simulate payment processing
+    alert(`Processing M-Pesa payment of KSh ${amount} for ${name}...\n\n(This is a demo. To make real payments, you need to connect this to the Safaricom Daraja API.)`);
+    
+    // Reset form
     form.reset();
-    payBtn.disabled = false;
-    payBtn.innerText = "🟢 PAY WITH M-PESA";
-
-  }, 2000);
 });
